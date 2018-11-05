@@ -99,8 +99,8 @@ public class AlbumDAOImpl implements AlbumDAO {
         Album album = null;
         try {
             session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Album where name = :paramName");
-            query.setParameter("paramName", name);
+            Query query = session.createQuery("from Album where name like :paramName");
+            query.setParameter("paramName", "%" + name + "%");
             List list = query.list();
             if (list.size() != 0) {
                 album = (Album) list.get(0);

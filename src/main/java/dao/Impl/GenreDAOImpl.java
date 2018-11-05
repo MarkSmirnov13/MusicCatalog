@@ -101,7 +101,7 @@ public class GenreDAOImpl implements GenreDAO {
         try {
             session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Genre where name like :paramName");
-            query.setParameter("paramName", name);
+            query.setParameter("paramName", "%" + name + "%");
             List list = query.list();
             if (list.size() != 0) {
                 genre = (Genre) list.get(0);

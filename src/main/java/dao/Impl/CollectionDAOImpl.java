@@ -100,8 +100,8 @@ public class CollectionDAOImpl implements CollectionDAO {
         Collection collection = null;
         try {
             session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Collection where name = :paramName");
-            query.setParameter("paramName", name);
+            Query query = session.createQuery("from Collection where name like :paramName");
+            query.setParameter("paramName", "%" + name + "%");
             List list = query.list();
             if (list.size() != 0) {
                 collection = (Collection) list.get(0);

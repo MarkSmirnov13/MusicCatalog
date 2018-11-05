@@ -103,8 +103,8 @@ public class ArtistDAOImpl implements ArtistDAO {
         Artist artist = null;
         try {
             session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Artist where name = :paramName");
-            query.setParameter("paramName", name);
+            Query query = session.createQuery("from Artist where name like :paramName");
+            query.setParameter("paramName", "%" + name + "%");
             List list = query.list();
             if (list.size() != 0) {
                 artist = (Artist) list.get(0);
